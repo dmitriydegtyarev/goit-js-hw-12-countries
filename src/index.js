@@ -4,7 +4,7 @@ import manyCountriesMarkup from './templates/listCountries.hbs';
 import getCuntries from './js/fetchCountries';
 import { refs } from './js/refs'
   
-import { error } from '@pnotify/core';
+import { error, success } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 
@@ -28,6 +28,10 @@ const searchCountrie = ({ target: { value } }) => {
   if (value.trim() !== '') {
     getCuntries(value.trim()).then(data => {
       if (data.length === 1) {
+        success({
+          text: "Found a country",
+          delay: 2000,
+        })
         countriesContainer.innerHTML = oneCountryMarkup(data[0]);
         return;
       }
@@ -37,7 +41,7 @@ const searchCountrie = ({ target: { value } }) => {
       }
       if (data.length > 10) {
         error({
-          text: "error",
+          text: "Too many matches found. Please enter a more specific query!",
           type: 'error',
           delay: 2000,
         });
