@@ -3,6 +3,10 @@ import oneCountryMarkup from './templates/oneCountry.hbs';
 import manyCountriesMarkup from './templates/listCountries.hbs';
 import getCuntries from './js/fetchCountries';
 import { refs } from './js/refs'
+  
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/PNotify.css';
 
 import debounce from 'lodash.debounce';
 
@@ -32,7 +36,11 @@ const searchCountrie = ({ target: { value } }) => {
         return;
       }
       if (data.length > 10) {
-        
+        error({
+          text: "error",
+          type: 'error',
+          delay: 2000,
+        });
       }
     });
   }
