@@ -12,17 +12,6 @@ import debounce from 'lodash.debounce';
 
 const { input, countriesContainer, clearBtn } = refs;
 
-// console.log(debounce);
-// console.log(input);
-// console.log(countriesContainer);
-// console.log(clearBtn);
-
-// console.log(getCuuntries('usa'));
-
-const eraseContainer = () => {
-  countriesContainer.innerHTML = '';
-  input.value = '';
-}  
 
 const searchCountrie = ({ target: { value } }) => {
   if (value.trim() !== '') {
@@ -48,6 +37,11 @@ const searchCountrie = ({ target: { value } }) => {
       }
     });
   }
+};
+
+const eraseContainer = () => {
+  countriesContainer.innerHTML = '';
+  input.value = '';
 };
 
 input.addEventListener('input', debounce(searchCountrie, 500));
